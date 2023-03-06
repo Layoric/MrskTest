@@ -40,6 +40,8 @@ jobs:
         run: echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
       # TAG_NAME defaults to 'latest' if not a release or manual deployment
       - name: Assign version
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
           echo "TAG_NAME=latest" >> $GITHUB_ENV
           if [ "${{ github.event.release.tag_name }}" != "" ]; then
@@ -48,7 +50,10 @@ jobs:
           if [ "${{ github.event.inputs.version }}" != "" ]; then
             echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
           fi;
-          echo "SSH_KEY=${{ secrets.SSH_KEY }}" >> $GITHUB_ENV
+          echo $SSH_KEY >> ~/.ssh/deploy_key
+          cat << EOF > ./.ssh/config
+          IdentityFile=~/.ssh/deploy_key
+          EOF
 
       - name: Setup node
         uses: actions/setup-node@v3
