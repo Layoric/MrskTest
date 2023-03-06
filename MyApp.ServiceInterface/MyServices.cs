@@ -14,4 +14,9 @@ public class MyServices : Service
     {
         return new HelloResponse { Result = $"Hello, {request.Name}!" };
     }
+
+    public object Get(HealthCheck request)
+    {
+        return new HealthCheckResponse();
+    }
 }

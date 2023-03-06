@@ -13,3 +13,14 @@ public class HelloResponse
 {
     public string Result { get; set; } = default!;
 }
+
+[Route("/up")]
+public class HealthCheck : IReturn<HealthCheckResponse>
+{
+    
+}
+
+public class HealthCheckResponse
+{
+    
+}

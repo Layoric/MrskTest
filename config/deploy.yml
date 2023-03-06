@@ -1,0 +1,9 @@
+service: app
+image: ghcr.io/layoric/mrsktest
+servers:
+    - 95.217.8.110
+registry:
+    server: gchr.io
+    username: Layoric
+    password:
+        - GITHUB_TOKEN
