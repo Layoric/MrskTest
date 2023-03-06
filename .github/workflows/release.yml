@@ -48,7 +48,7 @@ jobs:
           if [ "${{ github.event.inputs.version }}" != "" ]; then
             echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
           fi;
-          echo "SSH_KEY=${{ secrets.SSH_KEY }} >> $GITHUB_ENV
+          echo "SSH_KEY=${{ secrets.SSH_KEY }}" >> $GITHUB_ENV
 
       - name: Setup node
         uses: actions/setup-node@v3
